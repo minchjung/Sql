@@ -1,0 +1,56 @@
+# Date:2021/03 /23 
+# Name: Minchan
+# Set Table Pract
+
+#실습하기 3-1
+CREATE TABLE `USER2` (
+	`uid` VARCHAR(20) PRIMARY KEY,
+	`name` VARCHAR(20),
+	`hp` VARCHAR(13),
+	`age` TINYINT
+);
+INSERT INTO `USER2` VALUES('a101','김유신','010-1234-4567',23);
+INSERT INTO `USER2` VALUES('a102','김춘추','010-1234-1111',53);
+INSERT INTO `USER2` VALUES('a103','장보고','010-1234-3333',73);
+INSERT INTO `USER2` VALUES('a104','강감찬','010-1234-1111',31);
+
+#실습하기 3-2 :: PK 와 UNIQUE
+CREATE TABLE `USER3` (
+	`uid` VARCHAR(10) PRIMARY KEY,
+	`name` VARCHAR(10),
+	`hp` VARCHAR(13)UNIQUE,
+	`age` TINYINT
+);
+INSERT INTO `USER3` VALUES('B101','김유신','010-1234-3167',23);
+INSERT INTO `USER3` VALUES('B102','김춘추','010-1234-1211',53);
+INSERT INTO `USER3` VALUES('B103','장보고','010-1234-3233',73);
+INSERT INTO `USER3` VALUES('B104','강감찬','010-1234-2111',31);
+INSERT INTO `USER3` (`uid`,`name`,`age`) VALUES('C101','DAVID',45)
+#UNIQUE <-- VALUES 입력 없을시 NULL값 지정 
+
+#실습하기 3-3 :: sequence !! PK 대체 
+CREATE TABLE `USER4`(
+	`seq`	    INT AUTO_INCREMENT PRIMARY KEY,
+	`uid`     VARCHAR(10),
+	`gender`  TINYINT,
+	`age`     TINYINT,
+	`addr`    VARCHAR(255)
+);
+INSERT INTO `USER4`(`uid`,`gender`,`age`,`addr`) 
+				VALUES('A202',1,23,'울산시')
+INSERT INTO `USER4`(`uid`,`gender`,`age`,`addr`) 
+				VALUES('A202',1,23,'울산시')
+DELETE FROM `USER4` WHERE `seq`=3;
+
+
+#실습하기 3-4 TABLE 복사 
+CREATE TABLE `USER5` SELECT*FROM`USER4`;
+SELECT *FROM `USER5`;
+
+#실습하기 3-5 LIKE : TABLE 구조 복사 
+CREATE TABLE `USER6` LIKE `USER4`;
+
+#실습하기 3-6
+INSERT INTO `USER6` SELECT *FROM `USER4`; 
+INSERT INTO `USER6` (`uid`,`gender`,`age`,`addr`) SELECT `uid`,`gender`,`age`,`addr` FROM `USER4`;
+SELECT *FROM `USER6`;

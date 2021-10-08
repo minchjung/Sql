@@ -1,6 +1,8 @@
+# 없어진 기록 찾기
+# TABLE A 있지만 TABLE B 없는 데이터 
 SELECT A.ID, A.NAME
 FROM TABLE_A A 
 LEFT JOIN TABLE_B B
 ON A.ID=B.ID
 WHERE B.ID IS NULL 
-# TABLE A 있지만 TABLE B 없는 데이터 
+

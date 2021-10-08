@@ -3,8 +3,8 @@
 -- and round your answer to  decimal places.
 -- https://www.hackerrank.com/challenges/weather-observation-station-20/problem
 
-SET @tot = (select count(*) from station);
-SET @op = IF(@tot%2=0, -1,0);
+SET @tot = (select count(*) from station); -- select 값 변수 설정시 괄호 필수;
+SET @op = IF(@tot%2=0, -1,0); --IF(조건,참,거짓)
 SET @off = floor(@tot/2) + @op;
 
 PREPARE STMT FROM '
@@ -12,4 +12,5 @@ SELECT ROUND(lat_n, 4)
 FROM STATION
 ORDER BY LAT_N
 LIMIT 1 OFFSET ?';
+
 EXECUTE STMT USING @off;
